@@ -19,28 +19,13 @@
     return _player;
 }
 
--(instancetype)init{
-    if (self = [super init]) {
-        
-        [self commit];
-    }
-    return self;
-}
-
--(void)commit{
-    [self addWatcher];
-}
-
 -(void)playWithLocalUrl:(NSString *)path{
-    //1.移除之前的通知
-//    [self deleteWatcher];
     
     NSLog(@"url == %@",path);
+    
     NSURL *url = [NSURL fileURLWithPath:path];
     AVAsset *avset = [AVAsset assetWithURL:url];
     AVPlayerItem *item = [[AVPlayerItem alloc] initWithAsset:avset];
-//    self.item = item;
-    
     [self.player replaceCurrentItemWithPlayerItem:item];
     [self.player play];
     
@@ -48,9 +33,7 @@
 }
 
 -(void)playWithNetUrl:(NSString *)urlStr{
-    //1.移除之前的通知
-//    [self deleteWatcher];
-    
+        
    //2.加载播放资源,替换之前的播放资源
     NSLog(@"url == %@",urlStr);
     NSURL *url = [NSURL URLWithString:urlStr];
